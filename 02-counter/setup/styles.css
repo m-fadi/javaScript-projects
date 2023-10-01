@@ -188,3 +188,25 @@ main {
   color: var(--clr-white);
   background: var(--clr-black);
 }
+
+
+.container{
+ height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap:10px;
+}
+.btns{
+  display:flex;
+  gap: 20px;
+}
+button{
+  width:80px;
+  height:25px;
+  border:solid gray 2px;
+  border-radius: 5px;
+  padding: 2px;
+  text-align: center;
+}
