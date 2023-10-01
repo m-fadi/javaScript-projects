@@ -232,6 +232,16 @@ main {
     color: var(--clr-white);
     background: var(--clr-black);
 }
+nav{
+   
+}
+
+.center{
+    display: flex;
+    justify-content: space-around;
+    align-items:center;
+}
+
 h1{
     height:10px;
     font-size: small;
