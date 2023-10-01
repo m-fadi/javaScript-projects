@@ -5,8 +5,10 @@ const col=document.querySelector(".col")
 
 let colorNr=0
 const flip=()=>{
-bg.style.background = colors[colorNr];
+    const randomNr= getRanNum()
+bg.style.background = colors[randomNr];
 
-col.innerHTML = colors[colorNr];
-colorNr < colors.length-1? (colorNr++, console.log(colorNr)): colorNr=0
+col.innerHTML = colors[randomNr];
+
 }
+const getRanNum=()=> Math.floor(Math.random() * colors.length)
