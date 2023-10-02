@@ -32,33 +32,39 @@ const reviews = [
 
 const img = document.getElementById("person-img");
 const job=document.getElementById("job")
-const ifo=document.getElementById("info")
+const info=document.getElementById("info")
 const author = document.getElementById("author");
 const prevBtn= document.querySelector(".prev-btn")
 const nextBtn= document.querySelector(".next-btn")
+const randomBtn = document.querySelector(".random-btn");
 let currentPerson=0
 console.log(img);
 nextBtn.addEventListener("click",()=>{
-  //for(let i=currentImg; i < reviews.length ; i++)
-  console.log(currentPerson);
-  if (currentPerson == reviews.length-1) currentPerson=0
-   else currentPerson++;
+  currentPerson++;
+  
+  if (currentPerson > reviews.length - 1) currentPerson = 0;
 
   display(currentPerson)
-
-
 })
 
 prevBtn.addEventListener("click", () => {
-    //for(let i=currentImg; i < reviews.length ; i++)
-    console.log(currentPerson);
-    if (currentPerson) currentPerson--;
-    else currentPerson = reviews.length - 1;
-    
+    currentPerson--;
+    if (currentPerson<0) currentPerson= reviews.length-1
     display(currentPerson) ;
 });
- display=()=>{
+
+randomBtn.addEventListener("click", () => {
+    currentPerson = randomNum();
+    console.log(currentPerson)
+    display(currentPerson);
+});
+
+const randomNum=()=> Math.floor(Math.random()*reviews.length)
+
+ const display=()=>{
   job.innerHTML = reviews[currentPerson].job;
   author.innerHTML = reviews[currentPerson].name;
   img.src = reviews[currentPerson].img;
+  info.innerHTML = reviews[currentPerson].text;
 }
+
