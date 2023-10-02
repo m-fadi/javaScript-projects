@@ -1,4 +1,4 @@
-// local reviews data
+//local reviews data
 const reviews = [
   {
     id: 1,
@@ -29,56 +29,36 @@ const reviews = [
     text: 'Edison bulb put a bird on it humblebrag, marfa pok pok heirloom fashion axe cray stumptown venmo actually seitan. VHS farm-to-table schlitz, edison bulb pop-up 3 wolf moon tote bag street art shabby chic. ',
   },
 ];
-// select items
-const img = document.getElementById('person-img');
-const author = document.getElementById('author');
-const job = document.getElementById('job');
-const info = document.getElementById('info');
 
-const prevBtn = document.querySelector('.prev-btn');
-const nextBtn = document.querySelector('.next-btn');
-const randomBtn = document.querySelector('.random-btn');
+const img = document.getElementById("person-img");
+const job=document.getElementById("job")
+const ifo=document.getElementById("info")
+const author = document.getElementById("author");
+const prevBtn= document.querySelector(".prev-btn")
+const nextBtn= document.querySelector(".next-btn")
+let currentPerson=0
+console.log(img);
+nextBtn.addEventListener("click",()=>{
+  //for(let i=currentImg; i < reviews.length ; i++)
+  console.log(currentPerson);
+  if (currentPerson == reviews.length-1) currentPerson=0
+   else currentPerson++;
 
-// set starting item
-let currentItem = 0;
+  display(currentPerson)
 
-// load initial item
-window.addEventListener('DOMContentLoaded', function () {
-  const item = reviews[currentItem];
-  img.src = item.img;
-  author.textContent = item.name;
-  job.textContent = item.job;
-  info.textContent = item.text;
+
+})
+
+prevBtn.addEventListener("click", () => {
+    //for(let i=currentImg; i < reviews.length ; i++)
+    console.log(currentPerson);
+    if (currentPerson) currentPerson--;
+    else currentPerson = reviews.length - 1;
+    
+    display(currentPerson) ;
 });
-
-// show person based on item
-function showPerson(person) {
-  const item = reviews[person];
-  img.src = item.img;
-  author.textContent = item.name;
-  job.textContent = item.job;
-  info.textContent = item.text;
+ display=()=>{
+  job.innerHTML = reviews[currentPerson].job;
+  author.innerHTML = reviews[currentPerson].name;
+  img.src = reviews[currentPerson].img;
 }
-// show next person
-nextBtn.addEventListener('click', function () {
-  currentItem++;
-  if (currentItem > reviews.length - 1) {
-    currentItem = 0;
-  }
-  showPerson(currentItem);
-});
-// show prev person
-prevBtn.addEventListener('click', function () {
-  currentItem--;
-  if (currentItem < 0) {
-    currentItem = reviews.length - 1;
-  }
-  showPerson(currentItem);
-});
-// show random person
-randomBtn.addEventListener('click', function () {
-  console.log('hello');
-
-  currentItem = Math.floor(Math.random() * reviews.length);
-  showPerson(currentItem);
-});
