@@ -72,11 +72,34 @@ const menu = [
     desc: `skateboard fam synth authentic semiotics. Live-edge lyft af, edison bulb yuccie crucifix microdosing.`,
   },
 ];
+
+const btnContainer = document.querySelector(".btn-container");
+const filterButtons= menu.map(item=>{
+  return `
+  <button class="filter-btn" data-id= ${item.category}">${item.category}</button>`;
+}).join('')
+btnContainer.innerHTML=filterButtons
 const itemCard = document.querySelector(".section-center");
-let displayItem = menu
+const filterBtn=document.querySelectorAll(".filter-btn")
+
+
+filterBtn.forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+        const category = e.target.dataset.id;
+        const filteredCat = menu.filter((item) => category === item.category);
+        console.log(filteredCat)
+        category==="all"? displayMenuItems(menu)
+              : displayMenuItems(filteredCat);
+    });
+
+
+});
+const displayMenuItems=(menuItems)=>{
+let displayItem = menuItems
     .map((item) => {
         const { id, title, category, price, img, desc } = item;
         return `
+         
         <article class="menu-item">
             <img src=${img} alt="" class="photo" />
             <div class="item-info">
@@ -91,4 +114,9 @@ let displayItem = menu
         </article>`;
     })
     .join("");
-itemCard.innerHTML=displayItem
+
+itemCard.innerHTML = displayItem;
+}
+
+
+
