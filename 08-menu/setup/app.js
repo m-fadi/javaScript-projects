@@ -72,3 +72,23 @@ const menu = [
     desc: `skateboard fam synth authentic semiotics. Live-edge lyft af, edison bulb yuccie crucifix microdosing.`,
   },
 ];
+const itemCard = document.querySelector(".section-center");
+let displayItem = menu
+    .map((item) => {
+        const { id, title, category, price, img, desc } = item;
+        return `
+        <article class="menu-item">
+            <img src=${img} alt="" class="photo" />
+            <div class="item-info">
+                <header>
+                    <h4>${title}</h4>
+                    <h4 class="price">Price : ${price}</h4>
+                </header>
+                <p class="item-tex">
+                    ${desc}
+                </p>
+            </div>
+        </article>`;
+    })
+    .join("");
+itemCard.innerHTML=displayItem
