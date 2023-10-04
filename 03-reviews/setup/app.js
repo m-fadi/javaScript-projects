@@ -55,11 +55,11 @@ prevBtn.addEventListener("click", () => {
 
 randomBtn.addEventListener("click", () => {
     currentPerson = randomNum();
-    console.log(currentPerson)
+    console.log(Math.random());
     display(currentPerson);
 });
 
-const randomNum=()=> Math.floor(Math.random()*reviews.length)
+const randomNum=()=> Math.floor(Math.random())
 
  const display=()=>{
   job.innerHTML = reviews[currentPerson].job;
