@@ -82,20 +82,31 @@ const menu = [
 ];
 
 const btnContainer = document.querySelector(".btn-container");
-const categories=[...new Set(menu.map(item=>item.category))]
+const itemCard = document.querySelector(".section-center");
 
-const filterButtons= categories.map(item=>{
-  
-  return `
+
+
+const categories=[...new Set(menu.map(item=>item.category))] // get the unique categories ==remove doubles
+categories.unshift("all")  // add the all category to the categories array
+
+const cat = menu.reduce((values,item)=>{
+    if (!values.includes(item.category)) {CSSFontFeatureValuesRule.push(item.category)}
+})
+console.log("cat",cat)
+const categoryBtn= categories.map(item=>{  // create the btns
+    return `
   <button class="filter-btn" data-id= ${item} type="button">${item}</button>`;
 })
-console.log("filterButtons",filterButtons)
-btnContainer.innerHTML=filterButtons.join('')
-const itemCard = document.querySelector(".section-center");
- const filterBtn=document.querySelectorAll(".filter-btn");
 
+btnContainer.innerHTML=categoryBtn.join('')
 
-[...filterBtn].forEach( btn => {
+const filterBtn=document.querySelectorAll(".filter-btn");
+
+window.addEventListener("DOMContentLoaded", () => {
+    // display Menuitems by first page load
+    displayMenuItems(menu);
+});
+filterBtn.forEach( btn => {
     console.log(btn)
     btn.addEventListener("click", (e) => { 
         const category = e.target.dataset.id;
