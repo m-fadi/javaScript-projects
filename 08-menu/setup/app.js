@@ -84,42 +84,21 @@ const menu = [
 const btnContainer = document.querySelector(".btn-container");
 const itemCard = document.querySelector(".section-center");
 
-
-
-const categories=[...new Set(menu.map(item=>item.category))] // get the unique categories ==remove doubles
-categories.unshift("all")  // add the all category to the categories array
-
-const cat = menu.reduce((values,item)=>{
-    if (!values.includes(item.category)) {CSSFontFeatureValuesRule.push(item.category)}
-})
-console.log("cat",cat)
-const categoryBtn= categories.map(item=>{  // create the btns
-    return `
-  <button class="filter-btn" data-id= ${item} type="button">${item}</button>`;
-})
-
-btnContainer.innerHTML=categoryBtn.join('')
-
-const filterBtn=document.querySelectorAll(".filter-btn");
-
 window.addEventListener("DOMContentLoaded", () => {
     // display Menuitems by first page load
     displayMenuItems(menu);
-});
-filterBtn.forEach( btn => {
-    console.log(btn)
-    btn.addEventListener("click", (e) => { 
-        const category = e.target.dataset.id;
+    createBtns()
+    // filtering the unique categories using reduce as in line 89 the initial value of values : values = ["all"]
+    // const cat = menu.reduce((values, item) => {
         
-        const filteredCat = menu.filter((item) => { 
-          
-          return category === item.category});
-        category==="all"? displayMenuItems(menu)
-              : displayMenuItems(filteredCat);
-    });
-
-
+    //     if (!values.includes(item.category)) {
+    //        values.push(item.category);
+    //     }
+    //     return values;
+    // },["all"]);
+    
 });
+
 const displayMenuItems=(menuItems)=>{
 let displayItem = menuItems
     .map((item) => {
@@ -143,6 +122,36 @@ let displayItem = menuItems
 
 itemCard.innerHTML = displayItem;
 }
+
+
+
+const createBtns = () => {
+    const categories = [...new Set(menu.map((item) => item.category))]; // get the unique categories ==remove doubles
+    categories.unshift("all"); // add the all category to the categories array
+
+    const categoryBtn = categories
+        .map((category) => {
+            // create the btns
+            return `
+  <button class="filter-btn" data-id= ${category} type="button">${category}</button>`;
+        })
+        .join("");
+
+    btnContainer.innerHTML = categoryBtn;
+    const filterBtn = document.querySelectorAll(".filter-btn");
+    filterBtn.forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+            const category = e.target.dataset.id;
+
+            const filteredCat = menu.filter((item) => {
+                return category === item.category;
+            });
+            category === "all"
+                ? displayMenuItems(menu)
+                : displayMenuItems(filteredCat);
+        });
+    });
+};
 
 
 
