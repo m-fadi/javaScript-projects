@@ -49,6 +49,7 @@ function addItem(e) {
     // add event listeners to both buttons;
     const deleteBtn = element.querySelector(".delete-btn");
     console.log(deleteBtn)
+    console.log("element", element);
     deleteBtn.addEventListener("click", deleteItem);
     const editBtn = element.querySelector(".edit-btn");
     editBtn.addEventListener("click", editItem);
@@ -104,6 +105,7 @@ function clearItems() {
 function deleteItem(e) {
  
   const element = e.currentTarget.parentElement.parentElement;
+  console.log("element", element);
   const id = element.dataset.id;
 
   list.removeChild(element);
