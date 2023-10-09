@@ -37,8 +37,7 @@ const addItem = (e) => {
 const deleteItem = (e) => {
     console.log("delete")
     const element = e.target.parentElement.parentElement.parentElement;
-    console.log("element", element);
-    groceryList.removeChild(element);
+       groceryList.removeChild(element);
 };
 const editItem=(value) => {
     console.log("edit",value)
@@ -49,6 +48,7 @@ input.value=value
 form.addEventListener("submit", addItem);
 
 const createItemHtml = (value) => {
+    console.log(value)
     return `<p class="title">${value}</p>
                         <div class="btn-container">
                             <button class="edit-btn" type="button">
