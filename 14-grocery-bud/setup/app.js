@@ -28,19 +28,22 @@ const addItem = (e) => {
         element.innerHTML= createItemHtml(value)
     groceryList.appendChild(element);
     const deleteBtn = element.querySelector(".delete-btn");
-    ;
+    input.value=""
     deleteBtn.addEventListener("click", deleteItem);
     const editBtn = element.querySelector(".edit-btn");
     deleteBtn.addEventListener("click", deleteItem);
-    editBtn.addEventListener("click", editItem);
+    editBtn.addEventListener("click", () => editItem(value));
 }
 const deleteItem = (e) => {
+    console.log("delete")
     const element = e.target.parentElement.parentElement.parentElement;
     console.log("element", element);
     groceryList.removeChild(element);
 };
-const editItem=(e) => {
+const editItem=(value) => {
+    console.log("edit",value)
     
+input.value=value
 }
 
 form.addEventListener("submit", addItem);
