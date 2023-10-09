@@ -13,7 +13,7 @@ const form = document.querySelector(".grocery-form");
 const input = document.querySelector("#grocery");
 const groceryList= document.querySelector(".grocery-list");
 const editBtn= document.querySelector(".edit-btn");
-;
+
 const clearBtn= document.querySelector(".clear-btn");
 
 // ****** EVENT LISTENERS **********
@@ -25,20 +25,25 @@ const addItem = (e) => {
     const value = input.value;
     const element = document.createElement("article");
     element.classList.add("grocery-item");
-    console.log(element)
-    element.innerHTML= createItemHtml(value)
+        element.innerHTML= createItemHtml(value)
     groceryList.appendChild(element);
-    const deleteBtn = document.querySelector(".delete-btn");
+    const deleteBtn = element.querySelector(".delete-btn");
+    ;
     deleteBtn.addEventListener("click", deleteItem);
+    const editBtn = element.querySelector(".edit-btn");
+    deleteBtn.addEventListener("click", deleteItem);
+    editBtn.addEventListener("click", editItem);
 }
 const deleteItem = (e) => {
-    const element = e.target.parentElement.parentElement;
+    const element = e.target.parentElement.parentElement.parentElement;
     console.log("element", element);
     groceryList.removeChild(element);
 };
+const editItem=(e) => {
+    
+}
+
 form.addEventListener("submit", addItem);
-
-
 
 const createItemHtml = (value) => {
     return `<p class="title">${value}</p>
