@@ -17,7 +17,7 @@ const editBtn= document.querySelector(".edit-btn");
 const clearBtn= document.querySelector(".clear-btn");
 
 // ****** EVENT LISTENERS **********
-
+let editFlag=false
 
 
 const addItem = (e) => {
@@ -25,7 +25,9 @@ const addItem = (e) => {
     const value = input.value;
     const element = document.createElement("article");
     element.classList.add("grocery-item");
-        element.innerHTML= createItemHtml(value)
+    let id = Date.now();
+    localStorage.setItem(id, value)
+    element.innerHTML = createItemHtml(localStorage.getItem(id));
     groceryList.appendChild(element);
     const deleteBtn = element.querySelector(".delete-btn");
     input.value=""
@@ -40,6 +42,7 @@ const deleteItem = (e) => {
        groceryList.removeChild(element);
 };
 const editItem=(value) => {
+    editFlag=true
     console.log("edit",value)
     
 input.value=value
@@ -48,7 +51,7 @@ input.value=value
 form.addEventListener("submit", addItem);
 
 const createItemHtml = (value) => {
-    console.log(value)
+    
     return `<p class="title">${value}</p>
                         <div class="btn-container">
                             <button class="edit-btn" type="button">
