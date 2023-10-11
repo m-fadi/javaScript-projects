@@ -23,9 +23,11 @@ let editFlag=false
 const addItem = (e) => {
     e.preventDefault();
     const value = input.value;
+    let id = Date.now();
     const element = document.createElement("article");
     element.classList.add("grocery-item");
-    let id = Date.now();
+    element.setAttribute('data-id' , id);
+    
     localStorage.setItem(id, value)
     element.innerHTML = createItemHtml(localStorage.getItem(id));
     groceryList.appendChild(element);
@@ -43,9 +45,11 @@ const deleteItem = (e) => {
 };
 const editItem=(value) => {
     editFlag=true
+
     console.log("edit",value)
     
 input.value=value
+
 }
 
 form.addEventListener("submit", addItem);
