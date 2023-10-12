@@ -21,6 +21,9 @@ let editFlag=false
 
 
 const addItem = (e) => {
+    if(editFlag){
+        console.log(value)
+    }
     e.preventDefault();
     const value = input.value;
     let id = Date.now();
