@@ -66,6 +66,7 @@ function addItem(e) {
     setBackToDefault();
   } else if (value !== "" && editFlag) {
     editElement.innerHTML = value;
+    console.log("value", editElement.innerHTML);
     displayAlert("value changed", "success");
 
     // edit  local storage
@@ -125,6 +126,7 @@ function editItem(e) {
   // set edit item
   editElement = e.currentTarget.parentElement.previousElementSibling;
   // set form value
+  console.log("editElement", editElement);
   grocery.value = editElement.innerHTML;
   editFlag = true;
   editID = element.dataset.id;
