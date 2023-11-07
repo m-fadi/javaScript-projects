@@ -14,8 +14,30 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <h1>sidebar project</h1>
-    <!-- javascript -->
-    <script src="app.js"></script>
+    <input type="number" id="amount1" min="0" value="0" oninput="amountChanged()">
+    <input type="number" id="amount2" min="0" value="0" oninput="amountChanged()">
+<div id="priceDiv">0 EUR</div>
+<script>
+    let hummusPrice = 5;
+    let chocolatePrice = 1;
+    let offer=false
+    function amountChanged() {
+console.log(offer)
+      
+        let amountHummus = document.getElementById("amount1");
+        let amountChocolate = document.getElementById("amount2");
+        let priceDiv = document.getElementById("priceDiv");
+        let amount1 = amountHummus.valueAsNumber ;
+        let hummusCost=amount1*hummusPrice
+        let amount2 = amountChocolate.valueAsNumber ;
+        let chocolateCost=amount2*chocolatePrice
+        let totalPrice=hummusCost + chocolateCost
+        if (totalPrice>=20 && offer===false) {
+          totalPrice= totalPrice - 20*totalPrice/100
+        offer = true
+      }
+        priceDiv.textContent = totalPrice + " EUR"
+    }
+</script>
   </body>
 </html>
